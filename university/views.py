@@ -15,6 +15,7 @@ from django.views.generic import View
 
 class HomeView(View):
     def get(self, request):
+        print "AAAAAAAAAAAAAaaaaaaa"
         return render(request,'university/home.html')
 
 class StaffRegisterView(View):
