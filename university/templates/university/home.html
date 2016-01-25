@@ -1,0 +1,56 @@
+{% extends 'university/layout.html' %}
+
+{% block content %}
+
+ <div class="container">
+   <div class="jumbotron">
+      <form name="loginForm" id="loginForm">
+         <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" class="form-control" id="username" name="username"placeholder="Username">
+         </div>
+         <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+         </div>
+         <button class="btn btn-primary" id="signIn">Sign in</button><a href="{% url 'staff_register' %}">Register</a>
+      </form>
+   </div>
+</div>
+      
+      
+ {% endblock %}
+
+
+ {% block script %}
+
+ <script type="text/javascript">
+
+ $("#signIn").on("click", function(){
+ 	var formData = $("#loginForm").serialize();
+ 	alert(formData);
+
+ 	$.ajax({
+
+ 		url:"/university/stafflogin/",
+ 		method:"POST",
+ 		data:formData,
+
+ 		success:function(data){
+ 			alert("success");
+
+ 		},
+
+ 		error:function(data){
+ 			alert("error");
+
+ 		}
+
+ 	});
+
+
+
+ });
+
+ </script>
+ {% endblock %}

@@ -1,0 +1,78 @@
+{% extends "university/layout.html" %}
+{% block content %}
+<div class="container">
+<div class="panel panel-default">
+   <div class="panel-body">
+      <form name="userregisterForm" id="userregisterForm">
+         {% csrf_token %}
+         <div class="container">
+            <div class="position">
+               <div class="required-field-block">
+                  <h1> User Registration </h1>
+                  <input type="text" name="username" class="user" placeholder="User name" class="form-control">
+                  <div class="required-icon">
+                     <div class="text">*</div>
+                  </div>
+               </div>
+               <div class="required-field-block">
+                  <input type="text" name="email" class="email"placeholder="Email" class="form-control">
+                  <div class="required-icon">
+                     <div class="text">*</div>
+                  </div>
+               </div>
+               <div class="required-field-block">
+                  <input type="password" class="password" name="password" placeholder="Password" class="form-control">
+                  <div class="required-icon">
+                     <div class="text">*</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <button type="button" id="submit" button class="btn btn-primary">Submit</button> 
+         <!-- <button class="btn btn-primary" onclick = 'clickit()' >Register</button> -->
+      </form>
+   </div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+
+
+<script type="text/javascript">
+
+$("#submit").on("click",function(event){
+  event.preventDefault();
+  var formData = $("#userregisterForm").serialize()
+  $.ajax({
+
+    url:"/university/staffregister/",
+    method:"POST",
+    data:formData,
+    success:function(data){
+      alert('Staff Registered Successfully');
+      $('#userregisterForm')[0].reset();
+      window.location.href = "/university";
+     
+
+    },
+
+    error:function(data){
+      alert("Staff Registration Failed");
+
+    }
+
+  });
+})
+
+
+
+
+  </script>
+     
+   <!-- /container -->
+ {% endblock %}
+<!-- /container -->
+ 
+ 
+ 
